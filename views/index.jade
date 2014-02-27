@@ -1,17 +1,26 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to test
-
+  #subheader
+  #header
+    h1 [The Koalabook]
   // Wrapper
   #wrapper
-    //USER INFO
+    // USER INFO
     #userInfo
-      h2 User Info
-      p 
+      h2 Koala Profile
+      p
+        strong Picture:
+        |  <span id='userInfoPic'></span>
+        br
         strong Name:
         |  <span id='userInfoName'></span>
+        br
+        Strong Email:
+        | <span id='userInfoEmail'></span>
+        br
+        Strong Phone:
+        | <span id='userInfoPhone'></span>
         br
         strong Age:
         |  <span id='userInfoAge'></span>
@@ -21,26 +30,46 @@ block content
         br
         strong Location:
         |  <span id='userInfoLocation'></span>
+        br
+        strong Occupation:
+        |  <span id='userInfoOccupation'></span>
+        br
+        strong Hobbies:
+        |  <span id='userInfoHobbies'></span>
+    // /USER INFO
+    
     // USER LIST
-    h2 User List
+    h2 List of Koalas
     #userList
       table
         thead
-          th Username
+          th User Name
+          th Age
           th Email
+          th Phone Number
           th Delete?
         tbody
-    
-    h2 Add User
+    // /USER LIST
+  
+    // ADD USER
+    h2 Add Koala Bear
     #addUser
       fieldset
         input#inputUserName(type='text', placeholder='Username')
-        input#inputUserEmail(type='text', placeholder='Email')
-        br
         input#inputUserFullname(type='text', placeholder='Full Name')
+        input#inputUserPicture(type='text', placeholder='Picture URL')
+        br
+        input#inputUserEmail(type='text', placeholder='Email')
+        input#inputUserPhone(type='text', placeholder='Phone Number')
         input#inputUserAge(type='text', placeholder='Age')
         br
         input#inputUserLocation(type='text', placeholder='Location')
         input#inputUserGender(type='text', placeholder='Gender')
+        input#inputUserOccupation(type='text', placeholder='Occupation')
         br
-        button#btnAddUser Add User
+        input#inputUserHobbies(type='text', placeholder='Hobbies')
+        button#btnAddUser Add Koala
+    // /ADD USER
+
+
+  // /WRAPPER

@@ -32,11 +32,13 @@ function populateTable() {
     // Stick our user data array into a userlist variable in the global object
     userListData = data;
 
-    // For each item in our JSON, add a table row and cells to the content string
-    $.each(data, function(){
+    // For each item in our JSON, add a table row and cells to the contenyt str
+    $.each(data, function() {
       tableContent += '<tr>';
       tableContent += '<td><a href="#" class="linkshowuser" rel="' + this.username + '" title="Show Details">' + this.username + '</td>';
+      tableContent += '<td>' + this.age + '</td>';
       tableContent += '<td>' + this.email + '</td>';
+      tableContent += '<td>' + this.phone + '</td>';
       tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">delete</a></td>'
     });
 
@@ -61,10 +63,15 @@ function showUserInfo(event) {
   var thisUserObject = userListData[arrayPosition];
 
   //Populate Info Box
+  $('#userInfoPic').html("<img src='" + thisUserObject.url + "'>");
   $('#userInfoName').text(thisUserObject.fullname);
+  $('#userInfoEmail').text(thisUserObject.email);
+  $('#userInfoPhone').text(thisUserObject.phone);
   $('#userInfoAge').text(thisUserObject.age);
   $('#userInfoGender').text(thisUserObject.gender);
   $('#userInfoLocation').text(thisUserObject.location);
+  $('#userInfoHobbies').text(thisUserObject.hobbies);
+  $('#userInfoOccupation').text(thisUserObject.occupation);
 };
 
 //Add User
@@ -82,12 +89,16 @@ function addUser(event) {
     
     //If it is, compile all user info into one object
     var newUser = {
-      'username':$('#addUser fieldset input#inputUserName').val(),
-      'email':$('#addUser fieldset input#inputUserEmail').val(),
-      'fullname':$('#addUser fieldset input#inputUserFullname').val(),
-      'age':$('#addUser fieldset input#inputUserAge').val(),
-      'location':$('#addUser fieldset input#inputUserLocation').val(),
-      'gender':$('#addUser fieldset input#inputUserGender').val()
+      'username': $('#addUser fieldset input#inputUserName').val(),
+      'fullname': $('#addUser fieldset input#inputUserFullname').val(),
+      'url': $('#addUser fieldset input#inputUserPicture').val(),
+      'email': $('#addUser fieldset input#inputUserEmail').val(),
+      'phone': $('#addUser fieldset input#inputUserPhone').val(),
+      'age': $('#addUser fieldset input#inputUserAge').val(),
+      'location': $('#addUser fieldset input#inputUserLocation').val(),
+      'gender': $('#addUser fieldset input#inputUserGender').val(),
+      'occupation': $('#addUser fieldset input#inputUserOccupation').val(),
+      'hobbies': $('#addUser fieldset input#inputUserHobbies').val()
     }
 
     // Use AJAX to post the object to our adduser service
