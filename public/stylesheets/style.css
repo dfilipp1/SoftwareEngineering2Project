@@ -7,6 +7,10 @@ body {
 h2 {
 	margin:0 0 1em 0;
 }
+#headerLink{
+color: white;
+text-decoration: none; 
+}
 
 a {
   color: #00B7FF;
@@ -121,7 +125,7 @@ fieldset {
   margin-left: 20px;
   margin-top:2px;
 }
-#btnAddUser {
+button {
   margin-left: 20px;
   margin-top:2px;
   background: #2A49A5;
@@ -132,4 +136,7 @@ fieldset {
   text-decoration: none;
   text-shadow: 0 -1px 0 #082783;
   font: 14px Verdana, sans-serif;
+}
+#txtSearch{
+  margin-left: 400px;
 }

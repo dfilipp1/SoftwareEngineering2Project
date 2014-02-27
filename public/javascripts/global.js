@@ -42,7 +42,7 @@ function populateTable() {
       tableContent += '<td>' + this.age + '</td>';
       tableContent += '<td>' + this.email + '</td>';
       tableContent += '<td>' + this.phone + '</td>';
-      tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">delete</a></td>'
+      tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">Delete</a></td>'
     });
 
     // Inject the whole content string into our existing HTML table

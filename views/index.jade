@@ -3,7 +3,10 @@ extends layout
 block content
   #subheader
   #header
-    h1 [The Koalabook]
+    h1 
+        a#headerLink(href="http://localhost:3000") [The Koalabook]
+        input#txtSearch(type='text', placeholder='Search')
+        button#btnSearch Search
   // Wrapper
   #wrapper
     // USER INFO
@@ -41,9 +44,6 @@ block content
     // USER LIST
     h2 List of Koalas
     #userList
-      form
-        input#txtSearch(type='text', placeholder='Search')
-        button#btnSearch Search
       table
         thead
           th User Name
