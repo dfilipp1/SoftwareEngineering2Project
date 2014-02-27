@@ -14,6 +14,9 @@ $(document).ready(function() {
   // Add User button click
   $('#btnAddUser').on('click', addUser);
 
+  // Search button click
+  $('#btnSearch').on('click', rePopulateTable);
+
   // Delete User link click
   $('#userList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);
 });
@@ -40,6 +43,36 @@ function populateTable() {
       tableContent += '<td>' + this.email + '</td>';
       tableContent += '<td>' + this.phone + '</td>';
       tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">delete</a></td>'
+    });
+
+    // Inject the whole content string into our existing HTML table
+    $('#userList table tbody').html(tableContent);
+  });
+};
+
+function rePopulateTable(event) {
+
+  event.preventDefault();
+
+  // Empty content string
+  var tableContent = '';
+
+  // jQuery AJAX call for JSON
+  $.getJSON( '/users', function( data ) {
+
+    // Stick our user data array into a userlist variable in the global object
+    userListData = data;
+
+    // For each item in our JSON, add a table row and cells to the contenyt str
+    $.each(data, function() {
+      if($('#txtSearch').val() === ""  || this.username === $('#txtSearch').val()){
+        tableContent += '<tr>';
+        tableContent += '<td><a href="#" class="linkshowuser" rel="' + this.username + '" title="Show Details">' + this.username + '</td>';
+        tableContent += '<td>' + this.age + '</td>';
+        tableContent += '<td>' + this.email + '</td>';
+        tableContent += '<td>' + this.phone + '</td>';
+        tableContent += '<td><a href="#" class="linkdeleteuser" rel="' + this._id + '">delete</a></td>';
+      }
     });
 
     // Inject the whole content string into our existing HTML table
