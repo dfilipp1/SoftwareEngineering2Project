@@ -1,4 +1,6 @@
 
+
+
 // Userlist data array for filling in info box
 var userListData = [];
 
@@ -13,6 +15,12 @@ $(document).ready(function() {
 
   // Add User button click
   $('#btnAddUser').on('click', addUser);
+
+  //
+  //$('#btnLogin').on('click', loginUser);
+
+  //
+  //$('#btnSwitch').on('click', switchLoginAdd);
 
   // Search button click
   $('#btnSearch').on('click', rePopulateTable);
@@ -111,6 +119,8 @@ function showUserInfo(event) {
 function addUser(event) {
   event.preventDefault();
 
+  alert('Hello');
+
   //Super basic validation - increase errorCount variable if any fields are blank
   var errorCount = 0;
   $('#addUser input').each(function(index, val) {
@@ -123,6 +133,7 @@ function addUser(event) {
     //If it is, compile all user info into one object
     var newUser = {
       'username': $('#addUser fieldset input#inputUserName').val(),
+      'password':$('#addUser fieldset input#inputUserPasswor').val(),
       'fullname': $('#addUser fieldset input#inputUserFullname').val(),
       'url': $('#addUser fieldset input#inputUserPicture').val(),
       'email': $('#addUser fieldset input#inputUserEmail').val(),
@@ -201,5 +212,14 @@ function deleteUser(event) {
     return false;
 
   }
+
+};
+
+function loginUser(event){
+  event.preventDefault();
+};
+
+function switchLoginAdd(event){
+  event.preventDefault();
 
 };
