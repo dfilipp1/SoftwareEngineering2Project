@@ -1,11 +1,12 @@
 extends layout
 
-
 block content
   #subheader
   #header
-    h1 [The Koalabook]
-    
+    h1 
+        a#headerLink(href="http://localhost:3000") [The Koalabook]
+        input#txtSearch(type='text', placeholder='Search')
+        button#btnSearch Search
   // Wrapper
   #wrapper
     // USER INFO
@@ -43,9 +44,6 @@ block content
     // USER LIST
     h2 List of Koalas
     #userList
-      form
-        input#txtSearch(type='text', placeholder='Search')
-        button#btnSearch Search
       table
         thead
           th User Name
@@ -57,42 +55,24 @@ block content
     // /USER LIST
   
     // ADD USER
-    script(type='text/javascript' src='/javascripts/angular.js')
-    div#modal(ng-app='LoginApp')
-      div#modalCtrl(ng-controller='MyCtrl')
-        button#modalBtn(ng-click='toggleModal()') Open Modal Dialog
-        modal-dialog#modalDialog(show='modalShown' width='600px' height='250px')
-          h2 {{viewType}}
-          div(ng-switch on='viewType')
-            div(ng-switch-when='Add Koala Bear')
-              #addUser(align='center')
-                fieldset
-                  p {{verifyPasswordFunct}}
-                  br
-                  input#inputUserName(type='text', placeholder='Username', ng-model='username')
-                  input#inputUserPassword(type='password', placeholder='Password', ng-model='password')
-                  input#inputUserVerifyPassword(type='password', placeholder="Verify Password", ng-model='verifyPassword')
-                  br
-                  input#inputUserFullname(type='text', placeholder='Full Name')
-                  input#inputUserPicture(type='text', placeholder='Picture URL')
-                  input#inputUserEmail(type='text', placeholder='Email')
-                  br
-                  input#inputUserPhone(type='text', placeholder='Phone Number')
-                  input#inputUserAge(type='text', placeholder='Age')
-                  input#inputUserLocation(type='text', placeholder='Location')
-                  br
-                  input#inputUserGender(type='text', placeholder='Gender')
-                  input#inputUserOccupation(type='text', placeholder='Occupation')
-                  input#inputUserHobbies(type='text', placeholder='Hobbies')
-                  br
-                  button#btnAddUser Add Koala
-            div(ng-switch-when='Login Koala Bear')
-              #loginUser(align='left')
-                fieldset
-                  input#inputUserName(type='text', placeholder='Username')
-                  input#inputUserPassword(type='password', placeholder='Password')
-                  button#btnLogin Login
-                  button#btnSwitch(ng-click='switchViews()') New Account
-       
-  // /WRAPPER
+    h2 Add Koala Bear
+    #addUser
+      fieldset
+        input#inputUserName(type='text', placeholder='Username')
+        input#inputUserFullname(type='text', placeholder='Full Name')
+        input#inputUserPicture(type='text', placeholder='Picture URL')
+        br
+        input#inputUserEmail(type='text', placeholder='Email')
+        input#inputUserPhone(type='text', placeholder='Phone Number')
+        input#inputUserAge(type='text', placeholder='Age')
+        br
+        input#inputUserLocation(type='text', placeholder='Location')
+        input#inputUserGender(type='text', placeholder='Gender')
+        input#inputUserOccupation(type='text', placeholder='Occupation')
+        br
+        input#inputUserHobbies(type='text', placeholder='Hobbies')
+        button#btnAddUser Add Koala
+    // /ADD USER
 
+
+  // /WRAPPER
