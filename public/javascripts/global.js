@@ -14,13 +14,7 @@ $(document).ready(function() {
   $('#userList table tbody').on('click', 'td a.linkshowuser', showUserInfo);
 
   // Add User button click
-  $('#btnAddUser').on('click', addUser);
-
-  //
-  //$('#btnLogin').on('click', loginUser);
-
-  //
-  //$('#btnSwitch').on('click', switchLoginAdd);
+  $('#modal').on('click', '#btnAddUser' , addUser);
 
   // Search button click
   $('#btnSearch').on('click', rePopulateTable);
@@ -119,8 +113,6 @@ function showUserInfo(event) {
 function addUser(event) {
   event.preventDefault();
 
-  alert('Hello');
-
   //Super basic validation - increase errorCount variable if any fields are blank
   var errorCount = 0;
   $('#addUser input').each(function(index, val) {
@@ -161,6 +153,9 @@ function addUser(event) {
         
         //Update the table
         populateTable();
+  
+        //Fixs issue #6 
+        $('.ng-modal-overlay').click();
 
       }
       else {
