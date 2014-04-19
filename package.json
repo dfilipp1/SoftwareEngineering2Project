@@ -1,5 +1,5 @@
 {
-  "name": "application-name",
+  "name": "KoalaBook",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -9,6 +9,10 @@
     "express": "3.4.8",
     "jade": "*",
 	"mongodb": "*",
-	"mongoskin": "*"
+	"mongoskin": "*",
+	"bcrypt-nodejs" : "latest",
+	"passport" : "~0.1.17",
+	"passport-local" : "~0.1.6",
+	"connect-flash" : "~0.1.1"
   }
 }

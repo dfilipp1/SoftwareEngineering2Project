@@ -124,17 +124,17 @@ function addUser(event) {
     
     //If it is, compile all user info into one object
     var newUser = {
-      'username': $('#addUser fieldset input#inputUserName').val(),
-      'password':$('#addUser fieldset input#inputUserPasswor').val(),
-      'fullname': $('#addUser fieldset input#inputUserFullname').val(),
-      'url': $('#addUser fieldset input#inputUserPicture').val(),
-      'email': $('#addUser fieldset input#inputUserEmail').val(),
-      'phone': $('#addUser fieldset input#inputUserPhone').val(),
-      'age': $('#addUser fieldset input#inputUserAge').val(),
-      'location': $('#addUser fieldset input#inputUserLocation').val(),
-      'gender': $('#addUser fieldset input#inputUserGender').val(),
-      'occupation': $('#addUser fieldset input#inputUserOccupation').val(),
-      'hobbies': $('#addUser fieldset input#inputUserHobbies').val()
+      'username': $('#addUser form input#inputUserName').val(),
+      'password':$('#addUser form input#inputUserPassword').val(),
+      'fullname': $('#addUser form input#inputUserFullname').val(),
+      'url': $('#addUser form input#inputUserPicture').val(),
+      'email': $('#addUser form input#inputUserEmail').val(),
+      'phone': $('#addUser form input#inputUserPhone').val(),
+      'age': $('#addUser form input#inputUserAge').val(),
+      'location': $('#addUser form input#inputUserLocation').val(),
+      'gender': $('#addUser form input#inputUserGender').val(),
+      'occupation': $('#addUser form input#inputUserOccupation').val(),
+      'hobbies': $('#addUser form input#inputUserHobbies').val()
     }
 
     // Use AJAX to post the object to our adduser service

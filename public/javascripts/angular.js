@@ -27,17 +27,10 @@ app.controller('MyCtrl', ['$scope', function($scope) {
   $scope.toggleModal = function() {
     $scope.modalShown = !$scope.modalShown;
   };
-  $scope.verifyPasswordFunct = function() {
-    if(($scope.password == $scope.verifyPassword)){
-      alert('COOL');
-    }
-  };
   $scope.switchViews = function(){
-    
     if($scope.viewType === "Login Koala Bear") {
       $scope.viewType = 'Add Koala Bear';
     }
-
     else if($scope.viewType === "Add Koala Bear"){
       $scope.viewType = "Login Koala Bear";
     }

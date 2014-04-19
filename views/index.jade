@@ -55,7 +55,11 @@ block content
           th Delete?
         tbody
     // /USER LIST
-  
+ 
+    // USER LOGGED IN
+    div User Logged In:
+    div#divUser=username
+ 
     // ADD USER
     script(type='text/javascript' src='/javascripts/angular.js')
     div#modal(ng-app='LoginApp')
@@ -66,33 +70,33 @@ block content
           div(ng-switch on='viewType')
             div(ng-switch-when='Add Koala Bear')
               #addUser(align='center')
-                fieldset
-                  p {{verifyPasswordFunct}}
+                form(name='addForm')
                   br
-                  input#inputUserName(type='text', placeholder='Username', ng-model='username')
-                  input#inputUserPassword(type='password', placeholder='Password', ng-model='password')
-                  input#inputUserVerifyPassword(type='password', placeholder="Verify Password", ng-model='verifyPassword')
+                  input#inputUserName(name='name' type='text', placeholder='Username', ng-model='username')
+                  input#inputUserPassword(name='pass' type='password', placeholder='Password', ng-model='password')
+                  input#inputUserVerifyPassword(name='verifyPass' type='password', placeholder="Verify Password", ng-model='verifyPassword')
                   br
-                  input#inputUserFullname(type='text', placeholder='Full Name')
-                  input#inputUserPicture(type='text', placeholder='Picture URL')
-                  input#inputUserEmail(type='text', placeholder='Email')
+                  input#inputUserFullname(name='fullName' type='text', placeholder='Full Name')
+                  input#inputUserPicture(name='pic' type='text', placeholder='Picture URL')
+                  input#inputUserEmail(name='email' type='text', placeholder='Email')
                   br
-                  input#inputUserPhone(type='text', placeholder='Phone Number')
-                  input#inputUserAge(type='text', placeholder='Age')
-                  input#inputUserLocation(type='text', placeholder='Location')
+                  input#inputUserPhone(name='phone' type='text', placeholder='Phone Number')
+                  input#inputUserAge(name='age' type='text', placeholder='Age')
+                  input#inputUserLocation(name='location' type='text', placeholder='Location')
                   br
-                  input#inputUserGender(type='text', placeholder='Gender')
-                  input#inputUserOccupation(type='text', placeholder='Occupation')
-                  input#inputUserHobbies(type='text', placeholder='Hobbies')
+                  input#inputUserGender(name='gender' type='text', placeholder='Gender')
+                  input#inputUserOccupation(name='job' type='text', placeholder='Occupation')
+                  input#inputUserHobbies(name='hobbies' type='text', placeholder='Hobbies')
                   br
-                  button#btnAddUser Add Koala
+                  button#btnAddUser(name='add' ng-disabled='addForm.name.$pristine || addForm.pass.$pristine || addForm.verifyPass.$pristine || addForm.fullName.$pristine || addForm.pic.$pristine || addForm.email.$pristine || addForm.phone.$pristine || addForm.age.$pristine || addForm.location.$pristine || addForm.gender.$pristine || addForm.job.$pristine || addForm.hobbies.$pristine') Add Koala
+                button#btnSwitch(ng-click='switchViews()') Login
             div(ng-switch-when='Login Koala Bear')
               #loginUser(align='left')
-                fieldset
-                  input#inputUserName(type='text', placeholder='Username')
-                  input#inputUserPassword(type='password', placeholder='Password')
-                  button#btnLogin Login
-                  button#btnSwitch(ng-click='switchViews()') New Account
+                form(action='/login' method='post')
+                  input#inputUserName(type='text', name='username', placeholder='Username')
+                  input#inputUserPassword(type='password', name='password', placeholder='Password')
+                  input#btnLogin(type='submit', value='Login')
+                button#btnSwitch(ng-click='switchViews()') New Account
        
   // /WRAPPER
 
