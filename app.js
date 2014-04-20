@@ -11,6 +11,7 @@ var path = require('path');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var flash = require('connect-flash');
+var ObjectID = require('mongodb').ObjectID;
 
 //New
 var mongo = require('mongoskin');
@@ -53,6 +54,10 @@ passport.use(new LocalStrategy(
             if(!user){
               console.log("There is no user");
               return done(null, false);
+            }
+            if(!(user.password === password)){
+              console.log("Password doesn't match?");
+              return done(null, false);
             } 
             console.log('Guess this user is ok?');
             console.log(user);
@@ -65,7 +70,7 @@ passport.use(new LocalStrategy(
 
 passport.serializeUser(function(user, done) {
   console.log('Serialized');
-  done(null, user._id);
+  done(null, user._id.toHexString());
 });
 
 passport.deserializeUser(function(id, done) {
@@ -76,7 +81,7 @@ passport.deserializeUser(function(id, done) {
   console.log(id);
   db.collection('userlist', function(error, collection){
     if(!error){
-      collection.findOne({'username': 'qqq'}, function(err, user){
+      collection.findOne({'_id': ObjectID.createFromHexString(id)}, function(err, user){
         if(err){
           console.log('ERROR');
           return done(err);
@@ -121,7 +126,7 @@ app.delete('/deleteuser/:id', user.deleteuser(db));
 
 app.post('/login',
   passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login',
+                                   failureRedirect: '/',
                                    failureFlash : 'Invalid username or password.', 
                                    successFlash : 'Welcome'})
 );
@@ -129,7 +134,7 @@ app.post('/login',
 app.get('/flash', function(req, res){
   // Set a flash message by passing the key, followed by the value, to req.flash().
   req.flash('info', 'Flash is back!')
-  res.redirect('/');
+  //res.redirect('/');
 });
 
 http.createServer(app).listen(app.get('port'), function(){
