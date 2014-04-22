@@ -70,25 +70,50 @@ block content
           div(ng-switch on='viewType')
             div(ng-switch-when='Add Koala Bear')
               #addUser(align='center')
-                form(name='addForm')
-                  br
-                  input#inputUserName(name='name' type='text', placeholder='Username', ng-model='username')
-                  input#inputUserPassword(name='pass' type='password', placeholder='Password', ng-model='password')
-                  input#inputUserVerifyPassword(name='verifyPass' type='password', placeholder="Verify Password", ng-model='verifyPassword')
+                form(name='addForm' novalidate ng-submit="submitForm();")
+                  .form-section
+                    input#inputUserName(type='text', placeholder='Username', name='username1', ng-model='username1', required='')
+                    .custom-error(ng-show='addForm.username1.$dirty && addForm.username1.$invalid')
+                      | Invalid:
+                      span(ng-show='addForm.username1.$error.required') Username is required.
+                    br
+                    input#inputUserEmail(type='email', name='email1', ng-model='email1', required='', placeholder='Valid Email')
+                    .custom-error(ng-show='addForm.email1.$dirty && addForm.email1.$invalid')
+                      | Invalid:
+                      span(ng-show='addForm.email1.$error.required') Email is required.
+                      span(ng-show='addForm.email1.$error.email') Please, write a valid email address.
+                    .control-group
+                        .controls
+                          input#inputUserPassword.immediate-help(ng-model='inputUserPassword', password-validate='', ng-required='', type='password', placeholder='Password', name='inputUserPassword')
+                          input#inputUserVerifyPassword(type='password', ng-model='inputUserVerifyPassword', ng-required='', pw-check='inputUserPassword', name='inputUserVerifyPassword', placeholder="Verify Password")
+                          .input-help
+                            h4 Password must meet the following requirements:
+                            ul
+                              li(ng-class='pwdHasLetter')
+                                | At least
+                                b  one letter
+                              li(ng-class='pwdHasNumber')
+                                | At least
+                                b  one number
+                              li(ng-class='pwdValidLength')
+                                | At least
+                                b  8 characters long
+                              li(ng-show='addForm.inputUserVerifyPassword.$error.pwmatch')
+                                span.msg-error(ng-show='addForm.inputUserVerifyPassword.$error.pwmatch') Passwords don't match.                    
                   br
                   input#inputUserFullname(name='fullName' type='text', placeholder='Full Name')
                   input#inputUserPicture(name='pic' type='text', placeholder='Picture URL')
-                  input#inputUserEmail(name='email' type='text', placeholder='Email')
+                  script(type='text/javascript' src='/javascripts/angular.js')
+                  input#inputUserPhone(type='number', name='inputUserPhone', ng-model='inputUserPhone', ng-minlength='10', ng-maxlength='10', placeholder='10 digit Phone Number')
                   br
-                  input#inputUserPhone(name='phone' type='text', placeholder='Phone Number')
                   input#inputUserAge(name='age' type='text', placeholder='Age')
                   input#inputUserLocation(name='location' type='text', placeholder='Location')
-                  br
                   input#inputUserGender(name='gender' type='text', placeholder='Gender')
+                  br
                   input#inputUserOccupation(name='job' type='text', placeholder='Occupation')
                   input#inputUserHobbies(name='hobbies' type='text', placeholder='Hobbies')
                   br
-                  button#btnAddUser(name='add' ng-disabled='addForm.name.$pristine || addForm.pass.$pristine || addForm.verifyPass.$pristine || addForm.fullName.$pristine || addForm.pic.$pristine || addForm.email.$pristine || addForm.phone.$pristine || addForm.age.$pristine || addForm.location.$pristine || addForm.gender.$pristine || addForm.job.$pristine || addForm.hobbies.$pristine') Add Koala
+                  button#btnAddUser(name='add' ng-disabled='addForm.inputUserPhone.$dirty && addForm.inputUserPhone.$invalid ||addForm.name.$pristine || addForm.inputUserPassword.$pristine || addForm.inputUserPassword.$dirty && addForm.inputUserPassword.$invalid || addForm.inputUserVerifyPassword.$pristine || addForm.inputUserVerifyPassword.$dirty && addForm.inputUserVerifyPassword.$invalid || addForm.fullName.$pristine || addForm.pic.$pristine || addForm.email.$pristine || addForm.phone.$pristine || addForm.age.$pristine || addForm.location.$pristine || addForm.gender.$pristine || addForm.job.$pristine || addForm.hobbies.$pristine || addForm.email1.$dirty && addForm.email1.$invalid || addForm.username1.$dirty && addForm.username1.$invalid') Add Koala
                 button#btnSwitch(ng-click='switchViews()') Login
             div(ng-switch-when='Login Koala Bear')
               #loginUser(align='left')
