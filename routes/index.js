@@ -4,7 +4,12 @@
  */
 
 exports.index = function(req, res){
-  console.log(req.session.passport.user);
-  console.log(req.user);
-  res.render('index', { title: '[The Koalabook]', username: req.session.passport.user });
+  if(req.user) {
+    console.log(req.user.fullname);
+    res.render('index', { title: '[The Koalabook]', username: req.user.fullname });
+  }
+  else {
+    res.render('index', { title: '[The Koalabook]', username: "" });
+  }
 };
+

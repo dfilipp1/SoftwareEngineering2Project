@@ -90,7 +90,8 @@ passport.deserializeUser(function(id, done) {
           console.log('User Not found');
           return done(null, false);
         }
-        console.log('Found the User');
+        console.log('Found the User:');
+        console.log(user.username);
         return done(null, user);
       });
     }
@@ -130,6 +131,11 @@ app.post('/login',
                                    failureFlash : 'Invalid username or password.', 
                                    successFlash : 'Welcome'})
 );
+
+app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
 
 app.get('/flash', function(req, res){
   // Set a flash message by passing the key, followed by the value, to req.flash().
