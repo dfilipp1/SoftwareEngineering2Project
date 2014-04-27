@@ -65,7 +65,7 @@ block content
     div#modal(ng-app='LoginApp')
       div#modalCtrl(ng-controller='MyCtrl')
         button#modalBtn(ng-click='toggleModal()') Open Modal Dialog
-        modal-dialog#modalDialog(show='modalShown' width='600px' height='250px')
+        modal-dialog#modalDialog(show='modalShown' width='600px' height='350px')
           h2 {{viewType}}
           div(ng-switch on='viewType')
             div(ng-switch-when='Add Koala Bear')
@@ -100,6 +100,16 @@ block content
                                 b  8 characters long
                               li(ng-show='addForm.inputUserVerifyPassword.$error.pwmatch')
                                 span.msg-error(ng-show='addForm.inputUserVerifyPassword.$error.pwmatch') Passwords don't match.                    
+                  br
+                  input#inputSecurityQuestion(type='text', placeholder='Security Question', name='securityQuestion', ng-model='securityQustion', required='')
+                  .custom-error(ng-show='addForm.securityQuestion.$dirty && addForm.securityQuestion.$invalid')
+                    | Invalid:
+                    span(ng-show='addForm.securityQuestion.$error.required') Security Question is required.
+                  br
+                  input#inputSecurityQuestionAnswer(type='text', placeholder='Security Question Answer', name='securityAnswer', ng-model='securityAnswer', required='')
+                  .custom-error(ng-show='addForm.securityAnswer.$dirty && addFormsecurityAnswer.$invalid')
+                    | Invalid:
+                    span(ng-show='addForm.securityAnswer.$error.required') An answer to the Security Question is required.
                   br
                   input#inputUserFullname(name='fullName' type='text', placeholder='Full Name')
                   input#inputUserPicture(name='pic' type='text', placeholder='Picture URL')
