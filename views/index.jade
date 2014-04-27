@@ -134,6 +134,12 @@ block content
                 button#btnSwitch(ng-click='switchViews()') New Account
                 button#btnSwitch(ng-click='switchViews2()') Reset Password
             div(ng-switch-when='Reset Password')
+              form(action='/login' method='post')
+                  p Enter your username, then click 'submit to get your security question.
+                  input#inputUserName(type='text', name='username', placeholder='Username')
+                  input#btnGetSecurityQuestion(type='submit', value='submit')
+                  br
+              br
               button#btnSwitch(ng-click='switchViews2()') Login
        
   // /WRAPPER
