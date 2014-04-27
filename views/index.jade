@@ -132,7 +132,9 @@ block content
                   input#inputUserPassword(type='password', name='password', placeholder='Password')
                   input#btnLogin(type='submit', value='Login')
                 button#btnSwitch(ng-click='switchViews()') New Account
-                button#btnSwitch(ng-click='switchViews()') Reset Password
+                button#btnSwitch(ng-click='switchViews2()') Reset Password
+            div(ng-switch-when='Reset Password')
+              button#btnSwitch(ng-click='switchViews2()') Login
        
   // /WRAPPER
 
