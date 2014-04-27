@@ -126,6 +126,8 @@ function addUser(event) {
     var newUser = {
       'username': $('#addUser form input#inputUserName').val(),
       'password':$('#addUser form input#inputUserPassword').val(),
+      'securityQuestion': $('#addUser form input#inputUserSecurityQuestion').val(),
+      'securityQuestionAnswer': $('#addUser form input#inputUserSecurityQuestionAnswer').val(),
       'fullname': $('#addUser form input#inputUserFullname').val(),
       'url': $('#addUser form input#inputUserPicture').val(),
       'email': $('#addUser form input#inputUserEmail').val(),
