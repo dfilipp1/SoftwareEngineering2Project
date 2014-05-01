@@ -121,6 +121,8 @@ if ('development' == app.get('env')) {
 app.get('/', routes.index);
 app.get('/users', user.userlist(db));
 
+app.post('/edituser', user.edituser(db));
+
 app.post('/adduser', user.adduser(db));
 
 app.delete('/deleteuser/:id', user.deleteuser(db));
