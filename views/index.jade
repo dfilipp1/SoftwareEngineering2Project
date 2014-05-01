@@ -133,9 +133,6 @@ block content
                   input#btnLogin(type='submit', value='Login')
                 button#btnSwitch(ng-click='switchViews()') New Account
                 button#btnSwitch(ng-click='switchViews2()') Reset Password
-                br
-                br
-                button#btnToEdit(ng-click='switchViewsEL()') Edit Profile
             div(ng-switch-when='Reset Password')
               form(action='/login' method='post')
                   p Enter your username, then click submit to get your security question.
@@ -158,29 +155,6 @@ block content
               button#checkIfCorrect(onClick='checkIfPasswordCorrect()') Check If Correct
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               button#resetPassword(onClick='resetPassword()') Reset Password
-            div(ng-switch-when='Edit Profile')
-              #editUser(align='left')
-                form(action='/edituser' method="post")
-                  p This is the Edit Profile Page
-                  br
-                  //input#inputUserName(type='text', name='username', value=userName)
-                  //input#inputPassWord(type='text', name='password', value=password)
-                  input#inputSQ(type='text', name='securityQuestion', value=SQ)
-                  //br
-                  input#inputSQA(type='text', name='securityQuestionAnswer', value=SQA)
-                  input#inputFullName(type='text', name='fullname', value=username)
-                  input#inputURL(type='text', name='url', value=picture)
-                  br
-                  input#inputEmail(type='text', name='email', value=email)
-                  input#inputPhone(type='text', name='phone', value=phone) 
-                  input#inputAge(type='text', name='age', value=age)
-                  input#inputLocation(type='text', name='location', value=location)
-                  br
-                  input#inputGender(type='text', name='gender', value=gender)
-                  input#inputOccupation(type='text', name='occupation', value=occupation)
-                  input#inputHobbies(type='text', name='hobbies', value=hobbies)
-                button#btnEditUser(name='edit') Accept Changes
-                button#btnToLogin(ng-click='switchViewsEL()') Login
               
   // /WRAPPER
 

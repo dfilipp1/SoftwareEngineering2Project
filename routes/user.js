@@ -9,15 +9,6 @@ exports.userlist = function(db) {
   }
 };
 
-exports.edituser = function(db){
-  //alert("hi");
-  return function(req, res){
-    db.collection('userlist').update(req.body, function(err, result) {
-	  res.send((err === null) ? {msg: ''} : {msg: err});
-	});
-  }
-};
-
 exports.adduser = function(db){
   return function(req, res){
     db.collection('userlist').insert(req.body, function(err, result) {
@@ -34,3 +25,19 @@ exports.deleteuser = function(db){
     });
   }
 }
+
+exports.updateuser = function(db){
+  return function(req, res) {
+    var userToUpdate = req.body.id;
+	var newPassword = req.body.newPassword;
+	console.log('This is the User to update');
+	console.log(req.body.id);
+	console.log('This is the new Password for the User');
+	console.log(newPassword);
+	console.log(db.collection('userlist').findOne({_id: userToUpdate}));
+    db.collection('userlist').update({_id: userToUpdate}, {$set: {password: newPassword}}, function(err, result){
+      res.send((err === null) ? {msg: ''} : {msg: err});
+    })
+  }
+};
+

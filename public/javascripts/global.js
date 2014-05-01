@@ -15,8 +15,6 @@ $(document).ready(function() {
 
   // Add User button click
   $('#modal').on('click', '#btnAddUser' , addUser);
-  
-  $('#modal').on('click', '#btnEditUser', editUser);
 
   // Search button click
   $('#btnSearch').on('click', rePopulateTable);
@@ -110,60 +108,6 @@ function showUserInfo(event) {
   $('#userInfoLocation').text(thisUserObject.location);
   $('#userInfoHobbies').text(thisUserObject.hobbies);
   $('#userInfoOccupation').text(thisUserObject.occupation);
-};
-
-
-function editUser(event) {
-  //alert("hi");
-  event.preventDefault();
-  
-  //SKIPPING VALIDATION FOR NOW
-  var editedUser = {
-    //'username': $('#editUser form input#inputUserName').val(),
-    //'password':$('#editUser form input#inputPassWord').val(),
-    'securityQuestion': $('#editUser form input#inputSQ').val(),
-    'securityQuestionAnswer': $('#editUser form input#inputSQA').val(),
-    'fullname': $('#editUser form input#inputFullName').val(),
-    'url': $('#editUser form input#inputURL').val(),
-    'email': $('#editUser form input#inputEmail').val(),
-    'phone': $('#editUser form input#inputPhone').val(),
-    'age': $('#editUser form input#inputAge').val(),
-    'location': $('#editUser form input#inputLocation').val(),
-    'gender': $('#editUser form input#inputGender').val(),
-    'occupation': $('#editUser form input#inputOccupation').val(),
-    'hobbies': $('#editUser form input#inputHobbies').val()
-  }
- //}
-  
-  // Use AJAX to post the object to our edituser service
-  // Use AJAX to post the object to our edituser service
-  this.username = editedUser.fullname;
-  //alert(this.username);
-  $.ajax({
-    type: 'POST',
-    data: editedUser,
-    url: '/edituser',
-    dataType: 'JSON'
-  }).done(function(response) {
-    // Check for successful (blank) response
-    if(response.msg === '') {
-        
-      //Clear the form inputs
-      $('#editUser fieldset input').val('');
-        
-      //Update the table
-      populateTable();
-  
-      //Fixs issue #6 
-      $('.ng-modal-overlay').click();
-
-    }
-    else {
-      //If something goes wrong, alert the error messag that our service returned
-      alert('Error: '+response.msg);
-    }
-  });
-  
 };
 
 //Add User
@@ -341,24 +285,32 @@ function checkIfPasswordCorrect(event){
 // this function resets the password
 function resetPassword(event){
   
+  //event.preventDefault();
+  
   // Empty content string
   var tableContent = '';
-
+  
   // jQuery AJAX call for JSON
   $.getJSON( '/users', function( data ) {
 
     // Stick our user data array into a userlist variable in the global object
-    userListData = data;
-
+    var userListData = data;
+    
+	console.log('Is this actually being called?');
+	console.log(userListData);
+	
     // For each item in our JSON, add a table row and cells to the content str
     $.each(data, function() {
       if($('#inputUserName').val() === this.username && $('#inputSecurityAnswer').val() === this.securityQuestionAnswer){
-          this.password = $('#newPassword').val()
+          //this.password = $('#newPassword').val();
+		  //var id =  + $(this).attr('rel');
+		  //console.log('This is the ID:');
+		  //console.log(id);
+		  console.log(this.username);
           $.ajax({
           type: 'PUT',
-          data: {'password' : this.password},
-          url: '/users/',
-          dataType: 'JSON'
+          url: '/updateuser',
+		  data: {id: this._id, newPassword: $('#newPassword').val()}
           })
           tableContent = 'Password Reset';
       }
