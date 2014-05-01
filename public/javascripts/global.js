@@ -18,9 +18,10 @@ $(document).ready(function() {
 
   // Search button click
   $('#btnSearch').on('click', rePopulateTable);
-
+  
   // Delete User link click
   $('#userList table tbody').on('click', 'td a.linkdeleteuser', deleteUser);
+  
 });
 
 // Functions =============================================================
@@ -220,3 +221,95 @@ function switchLoginAdd(event){
   event.preventDefault();
 
 };
+
+//this is the function that should display the security question associated with the username
+function getSecurityQuestion(event){
+
+  // Empty content string
+  var tableContent = '';
+  var bool = 0;
+  
+  // jQuery AJAX call for JSON
+  $.getJSON( '/users', function( data ) {
+
+    // Stick our user data array into a userlist variable in the global object
+    userListData = data;
+
+    // For each item in our JSON, add a table row and cells to the contenyt str
+    $.each(data, function() {
+      if($('#inputUserName').val() === this.username){  
+        tableContent = this.securityQuestion;    
+		bool = 1;
+      }
+      else{
+        if (bool === 0){
+        tableContent = 'That username does not exist';
+        }
+      }
+    });
+    //Inject the whole content string into our existing HTML table
+    $('#securityQuestion').html(tableContent); 
+  });
+};
+
+// this function checks to see if the security question was answered correctly
+function checkIfPasswordCorrect(event){
+
+  // Empty content string
+  var tableContent = '';
+  var bool = 0;
+
+  // jQuery AJAX call for JSON
+  $.getJSON( '/users', function( data ) {
+
+    // Stick our user data array into a userlist variable in the global object
+    userListData = data;
+
+    // For each item in our JSON, add a table row and cells to the contenyt str
+    $.each(data, function() {
+      if($('#inputUserName').val() === this.username && $('#inputSecurityAnswer').val() === this.securityQuestionAnswer){	
+          tableContent = 'Correct';	
+          bool = 1;		  
+      }
+      else{
+          if (bool === 0){
+            tableContent = 'Incorrect';
+          }
+      }
+    }); 
+    // Inject the whole content string into our existing HTML table
+    $('#check').html(tableContent); 
+  });
+};
+
+// this function resets the password
+function resetPassword(event){
+  
+  // Empty content string
+  var tableContent = '';
+
+  // jQuery AJAX call for JSON
+  $.getJSON( '/users', function( data ) {
+
+    // Stick our user data array into a userlist variable in the global object
+    userListData = data;
+
+    // For each item in our JSON, add a table row and cells to the content str
+    $.each(data, function() {
+      if($('#inputUserName').val() === this.username && $('#inputSecurityAnswer').val() === this.securityQuestionAnswer){
+          this.password = $('#newPassword').val()
+          $.ajax({
+          type: 'PUT',
+          data: {'password' : this.password},
+          url: '/users/',
+          dataType: 'JSON'
+          })
+          tableContent = 'Password Reset';
+      }
+    }); 
+    // Inject the whole content string into our existing HTML table
+    $('display').html(tableContent); 
+  });
+};
+
+
