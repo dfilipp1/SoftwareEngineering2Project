@@ -94,46 +94,5 @@ app.controller('MyCtrl', ['$scope', function($scope) {
 	else if($scope.viewType === "Reset Password"){
       $scope.viewType = "Login Koala Bear";
     }
-  };
-  
-  //MY STUFF _________________________________________________________________________
-  
-  $scope.switchViewsEL = function(){
-  
-    if($scope.viewType === "Edit Profile") {
-      $scope.viewType = "Login Koala Bear";
-    }	
-	
-	else if($scope.viewType === "Login Koala Bear") {
-	  $scope.viewType = "Edit Profile";
-	}
-	
-  }
-  
-  $scope.switchViewsEA = function(){
-  
-    if($scope.viewType === "Edit Profile") {
-      $scope.viewType = "Add Koala Bear";
-    }	
-	
-    else if($scope.viewType === "Add Koala Bear") {
-	  $scope.viewType = "Edit Profile";
-    }
-	
-  }
-  
-  $scope.switchViewsER = function(){
-  
-    if($scope.viewType === "Edit Profile") {
-      $scope.viewType = "Reset Password";
-    }	
-	
-    else if($scope.viewType === "Reset Password") {
-	  $scope.viewType = "Edit Profile";
-    }
-	
-  }
-  
-  
-  
+  };  
 }]);

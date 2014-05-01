@@ -55,7 +55,6 @@ block content
           th Delete?
         tbody
     // /USER LIST
-
  
     // USER LOGGED IN
     div User Logged In:
@@ -66,7 +65,7 @@ block content
     div#modal(ng-app='LoginApp')
       div#modalCtrl(ng-controller='MyCtrl')
         button#modalBtn(ng-click='toggleModal()') Open Modal Dialog
-        modal-dialog#modalDialog(show='modalShown' width='600px' height='305px')
+        modal-dialog#modalDialog(show='modalShown' width='600px' height='325px')
           h2 {{viewType}}
           div(ng-switch on='viewType')
             div(ng-switch-when='Add Koala Bear')
@@ -136,19 +135,26 @@ block content
                 button#btnSwitch(ng-click='switchViews2()') Reset Password
             div(ng-switch-when='Reset Password')
               form(action='/login' method='post')
-                  p Enter your username, then click 'submit to get your security question.
+                  p Enter your username, then click submit to get your security question.
                   input#inputUserName(type='text', name='username', placeholder='Username')
-                  input#btnGetSecurityQuestion(type='submit', value='submit')
+                  text#securityQuestion(type='text', name='securityQuestion')
                   br
               br
+              button#btnGetSecurityQuestion(onClick='getSecurityQuestion()') Get Security Question
               button#btnSwitch(ng-click='switchViews2()') Login
-              button#btnToEdit(ng-click='switchViewsER()') Edit Profile
+              br
+              br
+              br
+              form(action='/login' method='post')
+                 p Enter the answer to your security question, and click Check If Correct. If the answer is correct, you will be notified, and then you can enter your new password. After you reset your password, you will need to click the Login button. 
+                 input#inputSecurityAnswer(type='text', name='securityAnswer', placeholder='Answer')
+                 text#check(type='text', name='check')
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 input#newPassword(type='text', name='newPassword', placeholder='New Password')
+                 display#check(type='text', name='display')
+              button#checkIfCorrect(onClick='checkIfPasswordCorrect()') Check If Correct
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              button#resetPassword(onClick='resetPassword()') Reset Password
               
-            // My Stuff
-            div(ng-switch-when='Edit Profile')
-              p This is the Edit Profile Page
-              button#btnToResetPassword(ng-click='switchViewsER()') Reset Password
-              
-                     
   // /WRAPPER
 
