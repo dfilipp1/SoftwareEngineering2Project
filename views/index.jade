@@ -55,6 +55,7 @@ block content
           th Delete?
         tbody
     // /USER LIST
+
  
     // USER LOGGED IN
     div User Logged In:
@@ -141,6 +142,13 @@ block content
                   br
               br
               button#btnSwitch(ng-click='switchViews2()') Login
-       
+              button#btnToEdit(ng-click='switchViewsER()') Edit Profile
+              
+            // My Stuff
+            div(ng-switch-when='Edit Profile')
+              p This is the Edit Profile Page
+              button#btnToResetPassword(ng-click='switchViewsER()') Reset Password
+              
+                     
   // /WRAPPER
 
