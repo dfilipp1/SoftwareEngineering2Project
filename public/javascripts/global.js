@@ -284,9 +284,7 @@ function checkIfPasswordCorrect(event){
 
 // this function resets the password
 function resetPassword(event){
-  
-  //event.preventDefault();
-  
+   
   // Empty content string
   var tableContent = '';
   
@@ -296,23 +294,78 @@ function resetPassword(event){
     // Stick our user data array into a userlist variable in the global object
     var userListData = data;
     
-	console.log('Is this actually being called?');
-	console.log(userListData);
-	
-    // For each item in our JSON, add a table row and cells to the content str
+	// For each item in our JSON, add a table row and cells to the content str
     $.each(data, function() {
       if($('#inputUserName').val() === this.username && $('#inputSecurityAnswer').val() === this.securityQuestionAnswer){
-          console.log(this.username);
           $.ajax({
           type: 'PUT',
           url: '/updateuser',
-		  data: {id: this._id, password: this.password, newPassword: $('#newPassword').val()}
+		  data: {password: this.password, newPassword: $('#newPassword').val()}
           })
           tableContent = 'Password Reset';
       }
     }); 
     // Inject the whole content string into our existing HTML table
     $('display').html(tableContent); 
+  });
+};
+
+//this is the function that should check if the user logged in successfully
+function logUserIn(event){
+
+  // Empty content string
+  var tableContent = '';
+  var bool = 0;
+  
+  // jQuery AJAX call for JSON
+  $.getJSON( '/users', function( data ) {
+
+    // Stick our user data array into a userlist variable in the global object
+    userListData = data;
+
+      $.each(data, function() {
+      if($('#inputUserName').val() === this.username && $('#inputPassword').val() === this.password){  
+        tableContent = 'Login Successful';    
+		bool = 1;
+      }
+      else if($('#inputUserName').val() === this.username && $('#inputPassword').val() != this.password && bool === 0){
+        tableContent = 'Incorrect Password';
+      }
+      else if($('#inputUserName').val() != this.username && bool === 0){
+        tableContent = 'Username does not exist';
+      }
+      });
+
+    //Inject the whole content string into our existing HTML table
+    $('#text').html(tableContent); 
+  });
+};
+
+// this function updates the user info
+function updateUserInformation(event){
+  
+  // Empty content string
+  var tableContent = '';
+  
+  // jQuery AJAX call for JSON
+  $.getJSON( '/users', function( data ) {
+
+    // Stick our user data array into a userlist variable in the global object
+    var userListData = data;
+  
+	// For each item in our JSON, add a table row and cells to the content str
+    $.each(data, function() {
+      if($('#inputUserName').val() === this.username && $('#inputPassword').val() === this.password){
+	      $.ajax({
+          type: 'PUT',
+          url: '/updateuserinformation',
+		  data: {password: this.password, newFullName: $('#inputUserFullName').val(), newPicture: $('#inputUserPicture').val(), newPhone: $('#inputUserPhone').val(), newAge: $('#inputUserAge').val(), newLocation: $('#inputUserLocation').val(), newGender: $('#inputUserGender').val(), newOccupation: $('#inputUserOccupation').val(), newHobbies: $('#inputUserHobbies').val()}
+          })
+          tableContent = 'Information Updated';
+      }
+    }); 
+    // Inject the whole content string into our existing HTML table
+    $('#text2').html(tableContent); 
   });
 };
 

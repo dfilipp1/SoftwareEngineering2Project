@@ -123,6 +123,8 @@ app.get('/users', user.userlist(db));
 
 app.put('/updateuser', user.updateuser(db));
 
+app.put('/updateuserinformation', user.updateuserinformation(db));
+
 app.post('/adduser', user.adduser(db));
 
 app.delete('/deleteuser/:id', user.deleteuser(db));

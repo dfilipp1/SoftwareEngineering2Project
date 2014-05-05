@@ -94,5 +94,13 @@ app.controller('MyCtrl', ['$scope', function($scope) {
 	else if($scope.viewType === "Reset Password"){
       $scope.viewType = "Login Koala Bear";
     }
+  };
+  $scope.switchViews3 = function(){
+    if($scope.viewType === "Login Koala Bear") {
+      $scope.viewType = "Edit User Information";
+    }
+	else if($scope.viewType === "Edit User Information"){
+      $scope.viewType = "Login Koala Bear";
+    }
   };  
 }]);

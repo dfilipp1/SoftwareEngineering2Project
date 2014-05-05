@@ -125,7 +125,7 @@ block content
                   input#inputUserHobbies(name='hobbies' type='text', placeholder='Hobbies')
                   br
                   button#btnAddUser(name='add' ng-disabled='addForm.inputUserPhone.$dirty && addForm.inputUserPhone.$invalid ||addForm.name.$pristine || addForm.inputUserPassword.$pristine || addForm.inputUserPassword.$dirty && addForm.inputUserPassword.$invalid || addForm.inputUserVerifyPassword.$pristine || addForm.inputUserVerifyPassword.$dirty && addForm.inputUserVerifyPassword.$invalid || addForm.securityQuestion.$pristine || addForm.securityAnswer.$pristine || addForm.fullName.$pristine || addForm.pic.$pristine || addForm.email.$pristine || addForm.phone.$pristine || addForm.age.$pristine || addForm.location.$pristine || addForm.gender.$pristine || addForm.job.$pristine || addForm.hobbies.$pristine || addForm.email1.$dirty && addForm.email1.$invalid || addForm.username1.$dirty && addForm.username1.$invalid || addForm.securitQuestion.$dirty && addForm.securityAnswer.$invalid || addForm.securityAnswer.$dirty && addForm.securityAnswer.$invalid') Add Koala
-                button#btnSwitch(ng-click='switchViews()') Login
+                button#btnSwitch(ng-click='switchViews()') Go Back
             div(ng-switch-when='Login Koala Bear')
               #loginUser(align='left')
                 form(action='/login' method='post')
@@ -134,6 +134,7 @@ block content
                   input#btnLogin(type='submit', value='Login')
                 button#btnSwitch(ng-click='switchViews()') New Account
                 button#btnSwitch(ng-click='switchViews2()') Reset Password
+                button#btnSwitch(ng-click='switchViews3()') Edit User Information
             div(ng-switch-when='Reset Password')
               form(action='/login' method='post')
                   p Enter your username, then click submit to get your security question.
@@ -142,12 +143,12 @@ block content
                   br
               br
               button#btnGetSecurityQuestion(onClick='getSecurityQuestion()') Get Security Question
-              button#btnSwitch(ng-click='switchViews2()') Login
+              button#btnSwitch(ng-click='switchViews2()') Go Back
               br
               br
               br
               form(action='/login' method='post')
-                 p Enter the answer to your security question, and click Check If Correct. If the answer is correct, you will be notified, and then you can enter your new password. After you reset your password, you will need to click the Login button. 
+                 p Enter the answer to your security question, and click Check If Correct. If the answer is correct, you will be notified, and then you can enter your new password. After you reset your password, you will need to click the 'Go Back' button. 
                  input#inputSecurityAnswer(type='text', name='securityAnswer', placeholder='Answer')
                  text#check(type='text', name='check')
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -168,6 +169,37 @@ block content
               button#checkIfCorrect(onClick='checkIfPasswordCorrect()') Check If Correct
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
               button#resetPassword(onClick='resetPassword()') Reset Password
-              
+            div(ng-switch-when='Edit User Information')
+              form(action='/login' method='post')
+                  p Confirm your login information, then enter the information you want to be changed. You may leave fields blank. After you update your information, you will need to click the 'Go Back' button. 
+                  input#inputUserName(type='text', name='username', placeholder='Username')
+                  input#inputPassword(type='text', name='password', placeholder='Password')
+                  text#text(type='text', name='text')
+              button#logUserIn(onClick='logUserIn()') Log In
+              br
+              br
+              form(action='/login' method='post')
+                  input#inputUserFullName(name='fullName' type='text', placeholder='Full Name')
+                  input#inputUserPicture(name='pic' type='text', placeholder='Picture URL')
+                  script(type='text/javascript' src='/javascripts/angular.js')
+                  input#inputUserPhone(type='number', name='inputUserPhone', ng-model='inputUserPhone', ng-minlength='10', ng-maxlength='10', placeholder='10 digit Phone Number')
+                  br
+                  input#inputUserAge(name='age' type='text', placeholder='Age')
+                  input#inputUserLocation(name='location' type='text', placeholder='Location')
+                  input#inputUserGender(name='gender' type='text', placeholder='Gender')
+                  br
+                  input#inputUserOccupation(name='job' type='text', placeholder='Occupation')
+                  input#inputUserHobbies(name='hobbies' type='text', placeholder='Hobbies')
+              button#btnSwitch(onClick='updateUserInformation()') Update
+              button#btnSwitch(ng-click='switchViews3()') Go Back
+              br
+              br
+              br
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              text#text2(type='text', name='text2')
+                        
   // /WRAPPER
 

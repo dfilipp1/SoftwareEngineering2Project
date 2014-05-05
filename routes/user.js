@@ -28,18 +28,27 @@ exports.deleteuser = function(db){
 
 exports.updateuser = function(db){
   return function(req, res) {
-    var userToUpdate = req.body.id;
-	var newPassword = req.body.newPassword;
+    var newPassword = req.body.newPassword;
 	var oldPassword = req.body.password;
-	console.log('This is the User to update:');
-	console.log(req.body.id);
-	console.log('This is the new Password for the User:');
-	console.log(newPassword);
-	console.log('This is the old password:');
-	console.log(oldPassword);
-    db.collection('userlist').update({password: oldPassword}, {$set: {password: newPassword}}, function(err, result){
+	db.collection('userlist').update({password: oldPassword}, {$set: {password: newPassword}}, function(err, result){
       res.send((err === null) ? {msg: ''} : {msg: err});
     })
   }
 };
 
+exports.updateuserinformation = function(db){
+  return function(req, res) {
+    var currentPassword = req.body.password;
+    var newFullName = req.body.newFullName;
+	var newPicture = req.body.newPicture;
+    var newPhone = req.body.newPhone;
+	var newAge = req.body.newAge;
+    var	newLocation = req.body.newLocation;
+	var newGender = req.body.newGender;
+	var newOccupation = req.body.newOccupation;
+	var newHobbies = req.body.newHobbies;
+	db.collection('userlist').update({password: currentPassword}, {$set: {fullname: newFullName, url: newPicture, phone: newPhone, age: newAge, location: newLocation, gender: newGender, occupation: newOccupation, hobbies: newHobbies}}, function(err, result){
+      res.send((err === null) ? {msg: ''} : {msg: err});
+    })
+  }
+};
