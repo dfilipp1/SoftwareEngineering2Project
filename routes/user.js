@@ -34,7 +34,7 @@ exports.updateuser = function(db){
 	console.log(req.body.id);
 	console.log('This is the new Password for the User');
 	console.log(newPassword);
-	console.log(db.collection('userlist').findOne({_id: userToUpdate}));
+	//console.log(db.collection('userlist').findOne({_id: userToUpdate}));
     db.collection('userlist').update({_id: userToUpdate}, {$set: {password: newPassword}}, function(err, result){
       res.send((err === null) ? {msg: ''} : {msg: err});
     })

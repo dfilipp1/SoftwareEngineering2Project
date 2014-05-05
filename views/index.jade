@@ -59,6 +59,7 @@ block content
     // USER LOGGED IN
     div User Logged In:
     a#UserLink(href='/logout')=username
+    
  
     // ADD USER
     script(type='text/javascript' src='/javascripts/angular.js')
@@ -100,16 +101,16 @@ block content
                                 b  8 characters long
                               li(ng-show='addForm.inputUserVerifyPassword.$error.pwmatch')
                                 span.msg-error(ng-show='addForm.inputUserVerifyPassword.$error.pwmatch') Passwords don't match.                    
-                  br
-                  input#inputUserSecurityQuestion(type='text', placeholder='Security Question', name='securityQuestion', ng-model='securityQuestion', required='')
-                  .custom-error(ng-show='addForm.securityQuestion.$dirty && addForm.securityQuestion.$invalid')
-                    | Invalid:
-                    span(ng-show='addForm.securityQuestion.$error.required') Security Question is required.
-                  br
-                  input#inputUserSecurityQuestionAnswer(type='text', placeholder='Security Question Answer', name='securityAnswer', ng-model='securityAnswer', required='')
-                  .custom-error(ng-show='addForm.securityAnswer.$dirty && addForm.securityAnswer.$invalid')
-                    | Invalid:
-                    span(ng-show='addForm.securityAnswer.$error.required') An answer to the Security Question is required.
+                    br
+                    input#inputUserSecurityQuestion(type='text', placeholder='Security Question', name='securityQuestion', ng-model='securityQuestion', required='')
+                    .custom-error(ng-show='addForm.securityQuestion.$dirty && addForm.securityQuestion.$invalid')
+                      | Invalid:
+                      span(ng-show='addForm.securityQuestion.$error.required') Security Question is required.
+                    br
+                    input#inputUserSecurityQuestionAnswer(type='text', placeholder='Security Question Answer', name='securityAnswer', ng-model='securityAnswer', required='')
+                    .custom-error(ng-show='addForm.securityAnswer.$dirty && addForm.securityAnswer.$invalid')
+                      | Invalid:
+                      span(ng-show='addForm.securityAnswer.$error.required') An answer to the Security Question is required.
                   br
                   input#inputUserFullname(name='fullName' type='text', placeholder='Full Name')
                   input#inputUserPicture(name='pic' type='text', placeholder='Picture URL')
@@ -133,6 +134,8 @@ block content
                   input#btnLogin(type='submit', value='Login')
                 button#btnSwitch(ng-click='switchViews()') New Account
                 button#btnSwitch(ng-click='switchViews2()') Reset Password
+                br
+                button#editProfile(onClick='editProfile()') Edit Profile
             div(ng-switch-when='Reset Password')
               form(action='/login' method='post')
                   p Enter your username, then click submit to get your security question.
@@ -150,7 +153,19 @@ block content
                  input#inputSecurityAnswer(type='text', name='securityAnswer', placeholder='Answer')
                  text#check(type='text', name='check')
                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                 input#newPassword(type='text', name='newPassword', placeholder='New Password')
+                 input#newPassword.immediate-help(type='text', name='newPassword', placeholder='New Password', ng-model='newPassword', password-validate='', ng-required='')
+                 .input-help
+                            h4 Password must meet the following requirements:
+                            ul
+                              li(ng-class='pwdHasLetter')
+                                | At least
+                                b  one letter
+                              li(ng-class='pwdHasNumber')
+                                | At least
+                                b  one number
+                              li(ng-class='pwdValidLength')
+                                | At least
+                                b  8 characters long
                  display#check(type='text', name='display')
               button#checkIfCorrect(onClick='checkIfPasswordCorrect()') Check If Correct
               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

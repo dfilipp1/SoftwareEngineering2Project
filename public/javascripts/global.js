@@ -302,11 +302,7 @@ function resetPassword(event){
     // For each item in our JSON, add a table row and cells to the content str
     $.each(data, function() {
       if($('#inputUserName').val() === this.username && $('#inputSecurityAnswer').val() === this.securityQuestionAnswer){
-          //this.password = $('#newPassword').val();
-		  //var id =  + $(this).attr('rel');
-		  //console.log('This is the ID:');
-		  //console.log(id);
-		  console.log(this.username);
+          console.log(this.username);
           $.ajax({
           type: 'PUT',
           url: '/updateuser',
