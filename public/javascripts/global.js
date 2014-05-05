@@ -306,7 +306,7 @@ function resetPassword(event){
           $.ajax({
           type: 'PUT',
           url: '/updateuser',
-		  data: {id: this._id, newPassword: $('#newPassword').val()}
+		  data: {id: this._id, password: this.password, newPassword: $('#newPassword').val()}
           })
           tableContent = 'Password Reset';
       }

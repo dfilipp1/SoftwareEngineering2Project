@@ -134,8 +134,6 @@ block content
                   input#btnLogin(type='submit', value='Login')
                 button#btnSwitch(ng-click='switchViews()') New Account
                 button#btnSwitch(ng-click='switchViews2()') Reset Password
-                br
-                button#editProfile(onClick='editProfile()') Edit Profile
             div(ng-switch-when='Reset Password')
               form(action='/login' method='post')
                   p Enter your username, then click submit to get your security question.
