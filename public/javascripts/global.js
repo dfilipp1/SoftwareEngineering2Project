@@ -330,6 +330,7 @@ function logUserIn(event){
       }
       else if($('#inputUserName').val() === this.username && $('#inputPassword').val() != this.password && bool === 0){
         tableContent = 'Incorrect Password';
+        bool = 1;
       }
       else if($('#inputUserName').val() != this.username && bool === 0){
         tableContent = 'Username does not exist';
